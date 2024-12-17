@@ -5,8 +5,9 @@ import 'package:islami/MyColors.dart';
 import 'package:islami/providers/App_config_provider.dart';
 import 'package:islami/settingsPage/themebuttom.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+
+// ignore: camel_case_types
 class settingsPage extends StatefulWidget {
   const settingsPage({super.key});
 
@@ -14,6 +15,7 @@ class settingsPage extends StatefulWidget {
   State<settingsPage> createState() => _settingsPageState();
 }
 
+// ignore: camel_case_types
 class _settingsPageState extends State<settingsPage> {
   @override
   Widget build(BuildContext context) {
@@ -24,11 +26,11 @@ class _settingsPageState extends State<settingsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Text(AppLocalizations.of(context)!.languages),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             InkWell(
@@ -47,7 +49,7 @@ class _settingsPageState extends State<settingsPage> {
                     Text(provider.AppLanguage == "en"
                         ? AppLocalizations.of(context)!.english
                         : AppLocalizations.of(context)!.arabic),
-                    Icon(
+                    const Icon(
                       Icons.arrow_drop_down,
                       size: 35,
                     ),
@@ -55,11 +57,11 @@ class _settingsPageState extends State<settingsPage> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Text(AppLocalizations.of(context)!.theme),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             InkWell(
@@ -67,7 +69,7 @@ class _settingsPageState extends State<settingsPage> {
                 showThemeButtomSheet();
               },
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: MyColors.PrimeryColor,
@@ -78,7 +80,7 @@ class _settingsPageState extends State<settingsPage> {
                     Text(provider.isDark()
                         ? AppLocalizations.of(context)!.dark
                         : AppLocalizations.of(context)!.light),
-                    Icon(
+                    const Icon(
                       Icons.arrow_drop_down,
                       size: 35,
                     ),

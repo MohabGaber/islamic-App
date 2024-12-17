@@ -6,7 +6,7 @@ import 'package:islami/providers/App_config_provider.dart';
 import 'package:provider/provider.dart';
 import 'ThemeData.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'ThemeData.dart';
+
 
 void main() {
   runApp(ChangeNotifierProvider(
