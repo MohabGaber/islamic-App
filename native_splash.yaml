@@ -1,0 +1,16 @@
+flutter_native_splash:
+  android: true
+  color: "#F7F7F7"
+
+
+
+  background_image: "assets/images/bg2.png"
+  image: "assets/images/logo2 (1).png"
+  branding: "assets/images/Group 7 (1).png"
+
+
+  android_12:
+    color: "#F7F7F7"
+    background_image: "assets/images/bg2.png"
+    image: "assets/images/logo2 (1).png"
+    branding: "assets/images/Group 7 (1).png"
