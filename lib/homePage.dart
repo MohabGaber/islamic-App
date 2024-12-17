@@ -5,6 +5,8 @@ import 'package:islami/radioPage/radioPage.dart';
 import 'package:islami/sebhaPage/sebhaPage.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami/settingsPage/settingsPage.dart';
+import 'package:islami/providers/App_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class homePage extends StatefulWidget {
   static String routeName = "homePage";
@@ -26,14 +28,23 @@ class _homePageState extends State<homePage> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Stack(
       children: [
-        Image.asset(
-          "assets/images/bg3.png",
-          height: double.infinity,
-          width: double.infinity,
-          fit: BoxFit.fill,
-        ),
+        provider.isDark()
+            ? Image.asset(
+                "assets/images/home_dark_background.png",
+                height: double.infinity,
+                width: double.infinity,
+                fit: BoxFit.fill,
+              )
+            : Image.asset(
+                "assets/images/bg3.png",
+                height: double.infinity,
+                width: double.infinity,
+                fit: BoxFit.fill,
+              ),
         Scaffold(
           body: tabs[selectIndex],
           backgroundColor: Colors.transparent,

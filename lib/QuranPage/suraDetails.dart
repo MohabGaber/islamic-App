@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/MyColors.dart';
 import 'package:islami/QuranPage/itemSuraDetails.dart';
+import 'package:islami/providers/App_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class suraDetails extends StatefulWidget {
   static String routeName = "suraDetails";
@@ -16,17 +18,26 @@ class _suraDetailsState extends State<suraDetails> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     var args = ModalRoute.of(context)?.settings.arguments as suraDetailsArgs;
     if (verses.isEmpty) {
       LoadFile(args.index);
     }
     return Stack(children: [
-      Image.asset(
-        "assets/images/bg3.png",
-        height: double.infinity,
-        width: double.infinity,
-        fit: BoxFit.fill,
-      ),
+      provider.isDark()
+          ? Image.asset(
+              "assets/images/home_dark_background.png",
+              height: double.infinity,
+              width: double.infinity,
+              fit: BoxFit.fill,
+            )
+          : Image.asset(
+              "assets/images/bg3.png",
+              height: double.infinity,
+              width: double.infinity,
+              fit: BoxFit.fill,
+            ),
       Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -47,19 +58,24 @@ class _suraDetailsState extends State<suraDetails> {
                     vertical: MediaQuery.of(context).size.height * 0.07),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color(0xffF8F8F8),
+                  color: provider.isDark()
+                      ? MyColors.PrimeryDarkColor
+                      : Color(0xffF8F8F8),
                 ),
                 child: ListView.separated(
                   separatorBuilder: (context, index) {
                     return Divider(
-                      thickness: 2,
-                      color: MyColors.PrimeryColor,
+                      thickness: 1,
+                      color: provider.isDark()
+                          ? MyColors.yellow
+                          : MyColors.PrimeryColor,
                     );
                   },
                   itemBuilder: (context, index) {
                     return itemSuraDetails(
                       contant: verses[index],
                       index: index,
+                      
                     );
                   },
                   itemCount: verses.length,

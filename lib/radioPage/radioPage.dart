@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:islami/MyColors.dart';
+import 'package:islami/providers/App_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class radioPage extends StatelessWidget {
   const radioPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Column(
       children: [
         SizedBox(
@@ -21,12 +25,18 @@ class radioPage extends StatelessWidget {
         ),
         Divider(
           thickness: 2,
-          color: MyColors.PrimeryColor,
+          color: provider.isDark() ? MyColors.yellow : MyColors.PrimeryColor,
         ),
-        Image.asset("assets/images/Group radio.png"),
+        provider.isDark()
+            ? Image.asset(
+                "assets/images/Group 5.png",
+              )
+            : Image.asset(
+                "assets/images/Group radio.png",
+              ),
         Divider(
           thickness: 2,
-          color: MyColors.PrimeryColor,
+          color: provider.isDark() ? MyColors.yellow : MyColors.PrimeryColor,
         ),
       ],
     );

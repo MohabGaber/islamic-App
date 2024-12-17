@@ -3,7 +3,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami/settingsPage/LanguageButtom.dart';
 import 'package:islami/MyColors.dart';
 import 'package:islami/providers/App_config_provider.dart';
+import 'package:islami/settingsPage/themebuttom.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class settingsPage extends StatefulWidget {
   const settingsPage({super.key});
@@ -53,6 +55,37 @@ class _settingsPageState extends State<settingsPage> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 40,
+            ),
+            Text(AppLocalizations.of(context)!.theme),
+            SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                showThemeButtomSheet();
+              },
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: MyColors.PrimeryColor,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(provider.isDark()
+                        ? AppLocalizations.of(context)!.dark
+                        : AppLocalizations.of(context)!.light),
+                    Icon(
+                      Icons.arrow_drop_down,
+                      size: 35,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ));
   }
@@ -60,5 +93,12 @@ class _settingsPageState extends State<settingsPage> {
   void showLanguageButtomSheet() {
     showModalBottomSheet(
         context: context, builder: (context) => languagebuttom());
+  }
+
+  void showThemeButtomSheet() {
+    showModalBottomSheet(
+        backgroundColor: Colors.brown,
+        context: context,
+        builder: (context) => themebuttom());
   }
 }

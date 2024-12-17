@@ -6,10 +6,11 @@ import 'package:islami/providers/App_config_provider.dart';
 import 'package:provider/provider.dart';
 import 'ThemeData.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'ThemeData.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider( create:  (context) => AppConfigProvider(),
-    child: const islami()));
+  runApp(ChangeNotifierProvider(
+      create: (context) => AppConfigProvider(), child: const islami()));
 }
 
 class islami extends StatelessWidget {
@@ -30,6 +31,8 @@ class islami extends StatelessWidget {
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(provider.AppLanguage),
       theme: MyThemeData.lightMode,
+      themeMode: provider.appTheme,
+      darkTheme: MyThemeData.darkMode,
     );
   }
 }

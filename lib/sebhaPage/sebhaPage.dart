@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami/MyColors.dart';
+import 'package:islami/providers/App_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class sebhapage extends StatefulWidget {
   @override
@@ -14,6 +16,7 @@ class _sebhapageState extends State<sebhapage> {
   List<String> tasabeh = ["سبحان الله", "الحمد لله", "الله اكبر"];
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -26,14 +29,28 @@ class _sebhapageState extends State<sebhapage> {
             alignment: Alignment.center,
             children: [
               Positioned(
-                  top: MediaQuery.of(context).size.height * 0.00,
-                  child: Image.asset("assets/images/head of seb7a.png")),
+                top: MediaQuery.of(context).size.height * 0.00,
+                child: provider.isDark()
+                    ? Image.asset(
+                        "assets/images/head of seb7a (1).png",
+                        height: 150,
+                      )
+                    : Image.asset(
+                        "assets/images/head of seb7a.png",
+                        height: 150,
+                      ),
+              ),
               InkWell(
                 onTap: change,
-                child: Image.asset(
-                  "assets/images/body of seb7a.png",
-                  height: 400,
-                ),
+                child: provider.isDark()
+                    ? Image.asset(
+                        "assets/images/body of seb7a (1).png",
+                        height: 400,
+                      )
+                    : Image.asset(
+                        "assets/images/body of seb7a.png",
+                        height: 320,
+                      ),
               ),
             ],
           ),
@@ -50,7 +67,9 @@ class _sebhapageState extends State<sebhapage> {
           padding: EdgeInsets.symmetric(horizontal: 7, vertical: 7),
           margin: EdgeInsets.symmetric(horizontal: 160),
           decoration: BoxDecoration(
-              color: MyColors.PrimeryColor,
+              color: provider.isDark()
+                  ? MyColors.PrimeryDarkColor
+                  : MyColors.PrimeryColor,
               borderRadius: BorderRadius.circular(24)),
           child: Text(
             textAlign: TextAlign.center,
@@ -67,11 +86,13 @@ class _sebhapageState extends State<sebhapage> {
           padding: EdgeInsets.symmetric(horizontal: 7, vertical: 7),
           margin: EdgeInsets.symmetric(horizontal: 120),
           decoration: BoxDecoration(
-              color: MyColors.PrimeryColor,
+              color:
+                  provider.isDark() ? MyColors.yellow : MyColors.PrimeryColor,
               borderRadius: BorderRadius.circular(24)),
           child: Text(
             textAlign: TextAlign.center,
             contant,
+            style: TextStyle(color: Colors.black),
           ),
         ),
       ],

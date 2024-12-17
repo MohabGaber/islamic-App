@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:islami/MyColors.dart';
 import 'package:islami/QuranPage/itemSuraName.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami/providers/App_config_provider.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class QuranPage extends StatelessWidget {
@@ -124,12 +126,14 @@ class QuranPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image.asset("assets/images/quran_header_icn.png"),
         Divider(
-          color: MyColors.PrimeryColor,
+          color: provider.isDark() ? MyColors.yellow : MyColors.PrimeryColor,
           thickness: 2,
         ),
         Text(
@@ -137,7 +141,7 @@ class QuranPage extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Divider(
-          color: MyColors.PrimeryColor,
+          color: provider.isDark() ? MyColors.yellow : MyColors.PrimeryColor,
           thickness: 2,
         ),
         Expanded(
@@ -150,7 +154,9 @@ class QuranPage extends StatelessWidget {
               },
               separatorBuilder: (context, index) {
                 return Divider(
-                  color: MyColors.PrimeryColor,
+                  color: provider.isDark()
+                      ? MyColors.yellow
+                      : MyColors.PrimeryColor,
                   thickness: 2,
                 );
               },

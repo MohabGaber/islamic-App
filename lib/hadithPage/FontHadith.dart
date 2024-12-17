@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:islami/MyColors.dart';
+import 'package:islami/providers/App_config_provider.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class fontHadit extends StatelessWidget {
@@ -7,6 +10,11 @@ class fontHadit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(contant);
+    var provider = Provider.of<AppConfigProvider>(context);
+
+    return Text(
+      contant,
+      style: Theme.of(context).textTheme.titleLarge,
+    );
   }
 }

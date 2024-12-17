@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:islami/MyColors.dart';
 import 'package:islami/hadithPage/hadithDetails.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami/providers/App_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class hadithPage extends StatefulWidget {
   @override
@@ -14,6 +16,8 @@ class _hadithPageState extends State<hadithPage> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
+
     if (ahadith.isEmpty) {
       LoadFiles();
     }
@@ -21,7 +25,7 @@ class _hadithPageState extends State<hadithPage> {
     return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
       Expanded(flex: 1, child: Image.asset("assets/images/hadith_header.png")),
       Divider(
-        color: MyColors.PrimeryColor,
+        color: provider.isDark() ? MyColors.yellow : MyColors.PrimeryColor,
         thickness: 2,
       ),
       Text(
@@ -29,7 +33,7 @@ class _hadithPageState extends State<hadithPage> {
         style: Theme.of(context).textTheme.bodyMedium,
       ),
       Divider(
-        color: MyColors.PrimeryColor,
+        color: provider.isDark() ? MyColors.yellow : MyColors.PrimeryColor,
         thickness: 2,
       ),
       Expanded(
@@ -43,7 +47,8 @@ class _hadithPageState extends State<hadithPage> {
             separatorBuilder: (context, index) {
               return Divider(
                 thickness: 2,
-                color: MyColors.PrimeryColor,
+                color:
+                    provider.isDark() ? MyColors.yellow : MyColors.PrimeryColor,
               );
             },
             itemCount: ahadith.length),
